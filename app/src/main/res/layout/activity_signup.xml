@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignupActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_large"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/TextViewTitleChangeInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Create a new account"
+            android:textColor="@color/green_text"
+            android:textSize="@dimen/text_size_xlarge" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_normal"
+            android:layout_marginRight="@dimen/padding_normal"
+            android:orientation="vertical"
+
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_xlarge"
+                android:layout_marginTop="@dimen/padding_large"
+                android:layout_marginRight="@dimen/padding_xlarge"
+                android:background="@drawable/bg_dialog_button"
+                android:hint="Full Name"
+                android:textSize="@dimen/text_size_large" />
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_xlarge"
+                android:layout_marginTop="@dimen/padding_large"
+                android:layout_marginRight="@dimen/padding_xlarge"
+                android:background="@drawable/bg_dialog_button"
+                android:hint="Phone Number"
+                android:inputType="phone"
+                android:textSize="@dimen/text_size_large" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_xlarge"
+                android:layout_marginTop="@dimen/padding_large"
+                android:layout_marginRight="@dimen/padding_xlarge"
+                android:background="@drawable/bg_dialog_button"
+                android:hint="E-mail Andress"
+                android:inputType="textEmailAddress"
+                android:textSize="@dimen/text_size_large" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_xlarge"
+                android:layout_marginTop="@dimen/padding_large"
+                android:layout_marginRight="@dimen/padding_xlarge"
+                android:background="@drawable/bg_dialog_button"
+                android:hint="Password"
+                android:inputType="numberPassword"
+                android:textSize="@dimen/text_size_large" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonSignup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_xxlarge"
+            android:layout_marginTop="@dimen/padding_xxlarge"
+            android:layout_marginRight="@dimen/padding_xxlarge"
+            android:background="@drawable/bg_dialog_button"
+            android:text="Signup"
+            android:textSize="@dimen/text_size_large" />
+    </LinearLayout>
+</LinearLayout>

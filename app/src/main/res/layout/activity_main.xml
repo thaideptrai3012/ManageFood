@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_normal"
+        android:src="@drawable/ic_logo_manage_food" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_large"
+        android:layout_marginLeft="@dimen/padding_normal"
+        android:layout_marginRight="@dimen/padding_normal"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/TextViewTitleChangeInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Welcome to Magic Shop"
+            android:textColor="@color/green_text"
+            android:textSize="@dimen/text_size_xlarge" />
+
+        <TextView
+            style="@style/TextViewTitleChangeInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_normal"
+            android:gravity="center"
+            android:text="Check out our menus, order food and make reservations"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/text_size_large" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_normal"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/butonLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_xxlarge"
+            android:layout_marginRight="@dimen/padding_xxlarge"
+            android:background="@drawable/bg_dialog_button"
+            android:text="Login"
+            android:textSize="@dimen/text_size_large" />
+
+        <Button
+            android:id="@+id/butonSignup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_xxlarge"
+            android:layout_marginTop="@dimen/padding_normal"
+            android:layout_marginRight="@dimen/padding_xxlarge"
+            android:background="@drawable/bg_dialog_button"
+            android:text="Signup"
+            android:textSize="@dimen/text_size_large" />
+
+    </LinearLayout>
+
+</LinearLayout>
