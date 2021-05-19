@@ -32,6 +32,7 @@
             >
 
             <EditText
+                android:id="@+id/llfullname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/padding_xlarge"
@@ -39,10 +40,12 @@
                 android:layout_marginRight="@dimen/padding_xlarge"
                 android:background="@drawable/bg_dialog_button"
                 android:hint="Full Name"
+                android:padding="@dimen/padding_tiny_small"
                 android:textSize="@dimen/text_size_large" />
 
 
             <EditText
+                android:id="@+id/llphonenumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/padding_xlarge"
@@ -51,9 +54,11 @@
                 android:background="@drawable/bg_dialog_button"
                 android:hint="Phone Number"
                 android:inputType="phone"
+                android:padding="@dimen/padding_tiny_small"
                 android:textSize="@dimen/text_size_large" />
 
             <EditText
+                android:id="@+id/llemail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/padding_xlarge"
@@ -62,9 +67,11 @@
                 android:background="@drawable/bg_dialog_button"
                 android:hint="E-mail Andress"
                 android:inputType="textEmailAddress"
+                android:padding="@dimen/padding_tiny_small"
                 android:textSize="@dimen/text_size_large" />
 
             <EditText
+                android:id="@+id/llpassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/padding_xlarge"
@@ -73,6 +80,7 @@
                 android:background="@drawable/bg_dialog_button"
                 android:hint="Password"
                 android:inputType="numberPassword"
+                android:padding="@dimen/padding_tiny_small"
                 android:textSize="@dimen/text_size_large" />
         </LinearLayout>
 
@@ -86,5 +94,6 @@
             android:background="@drawable/bg_dialog_button"
             android:text="Signup"
             android:textSize="@dimen/text_size_large" />
+
     </LinearLayout>
 </LinearLayout>
