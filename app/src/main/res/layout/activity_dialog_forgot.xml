@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
-
+    tools:context=".dialog_forgot">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding_normal"
-        android:src="@drawable/food" />
+        android:src="@drawable/lock" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,6 +22,7 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/llfullname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/padding_xlarge"
@@ -34,6 +34,7 @@
             android:textSize="@dimen/text_size_large" />
 
         <EditText
+            android:id="@+id/llpassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/padding_xlarge"
@@ -45,53 +46,45 @@
             android:padding="@dimen/margin_normal"
             android:textSize="@dimen/text_size_large" />
 
-        <CheckBox
+        <EditText
+            android:id="@+id/llrepassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/padding_xlarge"
-            android:text="Remember me"
-            android:textColor="@color/gray" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/padding_normal"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/butonLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/padding_xxlarge"
-            android:layout_marginRight="@dimen/padding_xxlarge"
+            android:layout_marginTop="@dimen/padding_normal"
+            android:layout_marginRight="@dimen/padding_xlarge"
             android:background="@drawable/bg_dialog_button"
-            android:text="SIGN IN"
+            android:hint="NewPassWord"
+            android:inputType="textPassword"
+            android:padding="@dimen/margin_normal"
             android:textSize="@dimen/text_size_large" />
 
-        <TextView
-            android:id="@+id/butonSignup"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/padding_xxlarge"
-            android:layout_marginTop="@dimen/padding_normal"
-            android:layout_marginRight="@dimen/padding_xxlarge"
-            android:text="Don't have an account?"
-            android:textSize="@dimen/text_size_normal" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/buttonforget"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/padding_xxlarge"
-            android:layout_marginTop="@dimen/padding_normal"
-            android:layout_marginRight="@dimen/padding_xxlarge"
-            android:text="Forgot your password?"
-            android:textSize="@dimen/text_size_normal" />
+            <Button
+                android:id="@+id/buttoncancle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_xlarge"
+                android:layout_marginTop="@dimen/padding_normal"
+                android:layout_weight="1"
+                android:text="CANCLE" />
 
+            <Button
+                android:id="@+id/buttonchange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_xlarge"
+                android:layout_marginTop="@dimen/padding_normal"
+                android:layout_marginRight="@dimen/padding_xlarge"
+                android:layout_weight="1"
+                android:text="CHANGE" />
+
+
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

@@ -11,7 +11,6 @@ import android.widget.Toast;
 public class SignupActivity extends AppCompatActivity {
     private Button buttonSignup;
     private EditText llfullname;
-    private EditText llphonenumber;
     private EditText llemail;
     private EditText llpassword;
 
@@ -21,19 +20,18 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         buttonSignup = findViewById(R.id.buttonSignup);
         llfullname = findViewById(R.id.llfullname);
-        llphonenumber = findViewById(R.id.llphonenumber);
         llemail = findViewById(R.id.llemail);
         llpassword = findViewById(R.id.llpassword);
 
 
         buttonSignup.setOnClickListener(v -> {
-            if (llfullname.getText().toString().isEmpty() || llphonenumber.getText().toString().isEmpty() || llphonenumber.getText().toString().isEmpty() || llemail.getText().toString().isEmpty() || llpassword.getText().toString().isEmpty()) {
+            if (llfullname.getText().toString().isEmpty() || llemail.getText().toString().isEmpty() || llpassword.getText().toString().isEmpty()) {
                 Toast.makeText(SignupActivity.this,
                         "Mời bạn nhập đầy đủ thông tin", Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(SignupActivity.this,
-                        "Create Successful!", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                        "Đăng ký thành công!", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                 startActivityForResult(intent, 0);
                 return;
             }
