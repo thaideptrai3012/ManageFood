@@ -4,15 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class OrderActivity extends AppCompatActivity {
+public class ChangePassActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order);
-<<<<<<< HEAD
-=======
-
->>>>>>> 7618c17ae1be772b5ba7121174be5d70e022f4cd
+        setContentView(R.layout.activity_change_pass);
     }
 }

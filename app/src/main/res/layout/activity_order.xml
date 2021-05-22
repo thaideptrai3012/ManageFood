@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     android:orientation="vertical"
     tools:context=".OrderActivity">
 
@@ -100,4 +101,16 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
          />
 
+=======
+    tools:context=".OrderActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="340dp"
+        android:text="Order Activity"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="164dp" />
+>>>>>>> 7618c17ae1be772b5ba7121174be5d70e022f4cd
 </androidx.constraintlayout.widget.ConstraintLayout>
