@@ -7,6 +7,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView buttonforget;
     private TextView buttonSignup;
+    private Button btnLogin;
 
 
     @Override
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         buttonforget = findViewById(R.id.buttonforget);
         buttonSignup = findViewById(R.id.butonSignup);
+        btnLogin = findViewById(R.id.butonLogin);
 
         buttonSignup.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, SignupActivity.class);
@@ -43,6 +46,14 @@ public class MainActivity extends AppCompatActivity {
 
             showDialog();
 
+        });
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent x = new Intent(MainActivity.this, HomeActivity.class);
+                startActivity(x);
+            }
         });
     }
 
