@@ -89,14 +89,7 @@
             android:text="GOOD FOOD | Ứng dụng đặt đồ ăn 24/7"
             android:textSize="@dimen/text_size_normal" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/padding_xxlarge"
-            android:layout_marginTop="@dimen/padding_normal"
-            android:layout_marginRight="@dimen/padding_xxlarge"
-            android:text="ADMIN| Quang Chinh , Mạnh , Văn Hưng, Đức Anh" />
+
 
     </LinearLayout>
 </LinearLayout>
