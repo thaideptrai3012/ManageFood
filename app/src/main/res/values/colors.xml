@@ -13,4 +13,7 @@
     <color name="color_gray_F8">#F8F8F8</color>
     <color name="color_white">#ffffff</color>
     <color name="color_gray_8E">#8E8E8E</color>
+    <color name="color_red_bill">#E57373</color>
+    <color name="color_red_tool">#FFCDD2</color>
+
 </resources>
