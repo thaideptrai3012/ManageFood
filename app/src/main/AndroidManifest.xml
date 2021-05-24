@@ -9,13 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ManageFood">
-<<<<<<< HEAD
+
         <activity android:name=".CartActivity"></activity>
         <activity android:name=".OrderActivity" />
 =======
         <activity android:name=".ChangePassActivity"></activity>
-        <activity android:name=".OrderActivity" />
-        <activity android:name=".CartActivity" />
+
 >>>>>>> 7618c17ae1be772b5ba7121174be5d70e022f4cd
         <activity android:name=".dialog_forgot" />
         <activity android:name=".SignupActivity" />

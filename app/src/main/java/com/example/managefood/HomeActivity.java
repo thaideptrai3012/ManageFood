@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,14 +23,13 @@ import com.google.android.material.navigation.NavigationView;
 
 
 
-
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class HomeActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
     NavigationView nav_view;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
-    FragmentManager fragmentManager;
-    FragmentTransaction fragmentTransaction;
+    ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,14 +38,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         nav_view = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        nav_view.setNavigationItemSelectedListener(this);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.open, R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
 
-        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+
         actionBarDrawerToggle.syncState();
-        nav_view.setNavigationItemSelectedListener(this);
+
 
 
 
