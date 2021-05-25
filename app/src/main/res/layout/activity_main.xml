@@ -23,6 +23,7 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/editTextUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/padding_xlarge"
@@ -34,6 +35,7 @@
             android:textSize="@dimen/text_size_large" />
 
         <EditText
+            android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/padding_xlarge"
@@ -46,6 +48,7 @@
             android:textSize="@dimen/text_size_large" />
 
         <CheckBox
+            android:id="@+id/checkbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/padding_xlarge"

@@ -4,12 +4,16 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,22 +24,44 @@ import com.google.firebase.database.FirebaseDatabase;
 import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
+    private String username, password;
     private EditText llfullname;
     private EditText llpassword;
     private EditText llrepassword;
+    private EditText editTextUsername;
+    private EditText editTextPassword;
+
+
+    private CheckBox checkBox;
 
     private TextView buttonforget;
     private TextView buttonSignup;
     private Button btnLogin;
+
+    private SharedPreferences loginPreferences;
+    private SharedPreferences.Editor loginPrefsEditor;
+    private Boolean saveLogin;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        editTextUsername = findViewById(R.id.editTextUsername);
+        editTextPassword = findViewById(R.id.editTextPassword);
         buttonforget = findViewById(R.id.buttonforget);
         buttonSignup = findViewById(R.id.butonSignup);
         btnLogin = findViewById(R.id.butonLogin);
+        checkBox = findViewById(R.id.checkbox);
+        loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        loginPrefsEditor = loginPreferences.edit();
+        saveLogin = loginPreferences.getBoolean("saveLogin", false);
+        if (saveLogin == true) {
+            editTextUsername.setText(loginPreferences.getString("username", ""));
+            editTextPassword.setText(loginPreferences.getString("password", ""));
+            checkBox.setChecked(true);
+        }
+
 
         buttonSignup.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, SignupActivity.class);
@@ -53,8 +79,26 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent x = new Intent(MainActivity.this, HomeActivity.class);
                 startActivity(x);
+                if (true) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(editTextUsername.getWindowToken(), 0);
+
+                    username = editTextUsername.getText().toString();
+                    password = editTextPassword.getText().toString();
+                }
+
+                if (checkBox.isChecked()) {
+                    loginPrefsEditor.putBoolean("saveLogin", true);
+                    loginPrefsEditor.putString("username", username);
+                    loginPrefsEditor.putString("password", password);
+                    loginPrefsEditor.commit();
+                } else {
+                    loginPrefsEditor.clear();
+                    loginPrefsEditor.commit();
+                }
             }
         });
+
     }
 
     public void showDialog() {
