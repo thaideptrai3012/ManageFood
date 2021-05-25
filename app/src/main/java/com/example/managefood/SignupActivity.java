@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.service.autofill.UserData;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,7 +16,11 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SignupActivity extends AppCompatActivity {
     private Button buttonSignup;
@@ -23,6 +28,9 @@ public class SignupActivity extends AppCompatActivity {
     private EditText llemail;
     private EditText llpassword;
     private FirebaseAuth auth;
+    private FirebaseDatabase database;
+    private DatabaseReference users;
+
 
 
     @Override
@@ -34,6 +42,8 @@ public class SignupActivity extends AppCompatActivity {
         llemail = findViewById(R.id.llemail);
         llpassword = findViewById(R.id.llpassword);
         auth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        users = database.getReference("Users");
 
         buttonSignup.setOnClickListener(v -> {
 
@@ -45,7 +55,12 @@ public class SignupActivity extends AppCompatActivity {
                 Toast.makeText(SignupActivity.this,
                         "Không được để trống!", Toast.LENGTH_LONG).show();
             } else {
+                Toast.makeText(SignupActivity.this,
+                        "Đăng ký thành công!", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                startActivityForResult(intent, 0);
                 registerUser(email, password);
+                return;
             }
         });
 
@@ -56,18 +71,14 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onComplete(Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-
-                    Toast.makeText(SignupActivity.this,
-                            "Đăng ký thành công!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignupActivity.this, "Đăng ký thành công!", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else {
-
-                    Toast.makeText(SignupActivity.this,
-                            "Đăng ký không thành công!", Toast.LENGTH_LONG).show();
-
+                    Toast.makeText(SignupActivity.this, "Đăng ký không thành công!", Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
+
 }
