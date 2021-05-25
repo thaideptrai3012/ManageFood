@@ -20,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,7 +32,7 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     private String username, password;
-    private String llemail;
+    private EditText llemail;
     private EditText llfullname;
     private EditText llpassword;
     private EditText llrepassword;
@@ -78,9 +80,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         buttonforget.setOnClickListener(v -> {
-
-            showDialog();
-
+            Intent intent = new Intent(MainActivity.this, dialog_forgot.class);
+            startActivity(intent);
         });
 
 //        btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -144,41 +145,5 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void showDialog() {
 
-        Dialog dialog = new Dialog(MainActivity.this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.activity_dialog_forgot);
-        dialog.show();
-        dialog.setCanceledOnTouchOutside(false);
-
-
-        llfullname = dialog.findViewById(R.id.llfullname);
-        llrepassword = dialog.findViewById(R.id.llrepassword);
-        llpassword = dialog.findViewById(R.id.llpassword);
-
-        Button buttonchange = dialog.findViewById(R.id.buttonchange);
-
-        buttonchange.setOnClickListener(v -> {
-
-            if (llfullname.getText().toString().isEmpty() || llrepassword.getText().toString().isEmpty() || llpassword.getText().toString().isEmpty()) {
-                Toast.makeText(MainActivity.this,
-                        "Mời bạn nhập đầy đủ thông tin", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(MainActivity.this,
-                        "Đổi mật khẩu thành công", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                startActivityForResult(intent, 0);
-                return;
-            }
-        });
-
-        Button buttoncancle = dialog.findViewById(R.id.buttoncancle);
-        buttoncancle.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, MainActivity.class);
-            startActivityForResult(intent, 0);
-
-        });
-
-    }
 }

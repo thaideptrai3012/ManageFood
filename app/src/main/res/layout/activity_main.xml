@@ -30,7 +30,7 @@
             android:layout_marginTop="@dimen/padding_normal"
             android:layout_marginRight="@dimen/padding_xlarge"
             android:background="@drawable/bg_dialog_button"
-            android:hint="UserName"
+            android:hint="Email"
             android:padding="@dimen/margin_normal"
             android:textSize="@dimen/text_size_large" />
 

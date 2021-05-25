@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,8 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 
 import com.google.android.material.navigation.NavigationView;
-
-
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -46,7 +46,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         nav_view.setNavigationItemSelectedListener(this);
-
 
 
     }
