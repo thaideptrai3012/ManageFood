@@ -1,5 +1,6 @@
 package com.example.managefood;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,6 +19,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -25,6 +30,7 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     private String username, password;
+    private String llemail;
     private EditText llfullname;
     private EditText llpassword;
     private EditText llrepassword;
@@ -42,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences.Editor loginPrefsEditor;
     private Boolean saveLogin;
 
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         buttonforget = findViewById(R.id.buttonforget);
         buttonSignup = findViewById(R.id.butonSignup);
         btnLogin = findViewById(R.id.butonLogin);
+        auth = FirebaseAuth.getInstance();
         checkBox = findViewById(R.id.checkbox);
         loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
         loginPrefsEditor = loginPreferences.edit();
@@ -75,31 +83,65 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent x = new Intent(MainActivity.this, HomeActivity.class);
-                startActivity(x);
-                if (true) {
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(editTextUsername.getWindowToken(), 0);
-
-                    username = editTextUsername.getText().toString();
-                    password = editTextPassword.getText().toString();
-                }
-
-                if (checkBox.isChecked()) {
-                    loginPrefsEditor.putBoolean("saveLogin", true);
-                    loginPrefsEditor.putString("username", username);
-                    loginPrefsEditor.putString("password", password);
-                    loginPrefsEditor.commit();
-                } else {
-                    loginPrefsEditor.clear();
-                    loginPrefsEditor.commit();
-                }
+//        btnLogin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent x = new Intent(MainActivity.this, HomeActivity.class);
+//                startActivity(x);
+//                if (true) {
+//                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//                    imm.hideSoftInputFromWindow(editTextUsername.getWindowToken(), 0);
+//
+//                    username = editTextUsername.getText().toString();
+//                    password = editTextPassword.getText().toString();
+//                }
+//
+//                if (checkBox.isChecked()) {
+//                    loginPrefsEditor.putBoolean("saveLogin", true);
+//                    loginPrefsEditor.putString("username", username);
+//                    loginPrefsEditor.putString("password", password);
+//                    loginPrefsEditor.commit();
+//                } else {
+//                    loginPrefsEditor.clear();
+//                    loginPrefsEditor.commit();
+//                }
+//            }
+//        });
+//
+        btnLogin.setOnClickListener(v -> {
+            String email = editTextUsername.getText().toString();
+            String password = editTextPassword.getText().toString();
+            if (editTextUsername.getText().toString().isEmpty() || editTextPassword.getText().toString().isEmpty()) {
+                Toast.makeText(MainActivity.this, "Không được để trống!", Toast.LENGTH_LONG).show();
             }
-        });
+            if (checkBox.isChecked()) {
+                loginPrefsEditor.putBoolean("saveLogin", true);
+                loginPrefsEditor.putString("username", email);
+                loginPrefsEditor.putString("password", password);
+                loginPrefsEditor.commit();
+            } else {
+                loginPrefsEditor.clear();
+                loginPrefsEditor.commit();
+            }
 
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+
+                @Override
+                public void onComplete(Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(MainActivity.this, "Đăng nhập thành công", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(editTextUsername.getWindowToken(), 0);
+                        startActivity(intent);
+
+                    } else {
+                        Toast.makeText(MainActivity.this,
+                                "Sai toàn khoản hoặc mật khẩu!!!", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+        });
     }
 
     public void showDialog() {
