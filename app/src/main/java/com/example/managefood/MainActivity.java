@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
             editTextUsername.setText(loginPreferences.getString("username", ""));
             editTextPassword.setText(loginPreferences.getString("password", ""));
             checkBox.setChecked(true);
+            checkBox.setChecked(true);
         }
 
 
