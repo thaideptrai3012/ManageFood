@@ -30,10 +30,7 @@ public class RiceActivity extends AppCompatActivity {
         initView();
         foodList = new ArrayList<>();
 
-        for (int i=0;i<10;i++){
-            Food food = new Food(""+i,"Cơm sườn  "+i,19000,99,R.drawable.comsuon,"khoai tay vgsgsg");
-            foodList.add(food);
-        }
+
         foodAdapter = new FoodAdapter(foodList);
         rvRice.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -44,7 +41,7 @@ public class RiceActivity extends AppCompatActivity {
         foodAdapter.setOnItemsRecycleViewClicked(new OnItemsRecycleViewClicked() {
             @Override
             public void onClick(Food food) {
-                Toast.makeText(RiceActivity.this,"Food Rv clicked "+food.getTen(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(RiceActivity.this,"Food Rv clicked "+food.getName(),Toast.LENGTH_SHORT).show();
             }
         });
     }

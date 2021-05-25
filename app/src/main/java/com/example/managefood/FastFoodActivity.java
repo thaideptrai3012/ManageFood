@@ -28,10 +28,7 @@ public class FastFoodActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fast_food);
         initView();
         foodList = new ArrayList<>();
-        for (int i=0;i<10;i++){
-            Food food = new Food(""+i,"Khoai tay chiên "+i,15000,99,R.drawable.khoaitay,"khoai tay vgsgsg");
-            foodList.add(food);
-        }
+
         foodAdapter = new FoodAdapter(foodList);
         rvFood.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -42,7 +39,7 @@ public class FastFoodActivity extends AppCompatActivity {
         foodAdapter.setOnItemsRecycleViewClicked(new OnItemsRecycleViewClicked() {
             @Override
             public void onClick(Food food) {
-                Toast.makeText(FastFoodActivity.this,"Food Rv clicked "+food.getTen(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(FastFoodActivity.this,"Food Rv clicked "+food.getName(),Toast.LENGTH_SHORT).show();
             }
         });
     }

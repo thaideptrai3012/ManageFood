@@ -10,7 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ManageFood">
         <activity android:name=".FoodDetailActivity" />
-        <activity android:name=".BeverageActivity">
+        <activity android:name=".FoodActivity"/>
+        <activity android:name=".ChangePassActivity"/>
+        <activity android:name=".OrderActivity" />
+        <activity android:name=".CartActivity" />
+        <activity android:name=".dialog_forgot" />
+        <activity android:name=".SignupActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -19,9 +28,6 @@
         <activity android:name=".HealthyActivity" />
         <activity android:name=".RiceActivity" />
         <activity android:name=".FastFoodActivity" />
-        <activity android:name=".SignupActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

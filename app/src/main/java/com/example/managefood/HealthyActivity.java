@@ -29,10 +29,7 @@ public class HealthyActivity extends AppCompatActivity {
         initView();
 
         foodList = new ArrayList<>();
-        for (int i=0;i<10;i++){
-            Food food = new Food(""+i,"Salad  "+i,19000,99,R.drawable.saladdaudo,"khoai tay vgsgsg");
-            foodList.add(food);
-        }
+
         foodAdapter = new FoodAdapter(foodList);
         rvHealthy.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -43,7 +40,7 @@ public class HealthyActivity extends AppCompatActivity {
         foodAdapter.setOnItemsRecycleViewClicked(new OnItemsRecycleViewClicked() {
             @Override
             public void onClick(Food food) {
-                Toast.makeText(HealthyActivity.this,"Healthy Rv clicked "+food.getTen(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(HealthyActivity.this,"Healthy Rv clicked "+food.getName(),Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -9,12 +9,16 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.squareup.picasso.Picasso;
 
 import com.example.managefood.Interface.OnItemsRecycleViewClicked;
 import com.example.managefood.Model.Food;
 import com.example.managefood.R;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder> {
     List<Food> foodList;
@@ -37,9 +41,10 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull  FoodViewHolder holder, int position) {
-            holder.imgFood.setImageResource(foodList.get(position).getHinhAnh());
-            holder.tvTen.setText(foodList.get(position).getTen());
-            holder.tvGia.setText(foodList.get(position).getGia()+ " VNĐ");
+            Picasso.with(holder.imgFood.getContext()).load(foodList.get(position).getImage()).into(holder.imgFood);
+            DecimalFormat formatter = new DecimalFormat("###,###,###");
+            holder.tvTen.setText(foodList.get(position).getName());
+            holder.tvGia.setText(formatter.format(foodList.get(position).getPrice())+ " VNĐ");
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

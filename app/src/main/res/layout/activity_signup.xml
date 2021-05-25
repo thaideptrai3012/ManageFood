@@ -12,14 +12,10 @@
         android:layout_marginTop="@dimen/padding_large"
         android:orientation="vertical">
 
-        <TextView
-            style="@style/TextViewTitleChangeInfo"
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Create a new account"
-            android:textColor="@color/green_text"
-            android:textSize="@dimen/text_size_xlarge" />
+            android:src="@drawable/mask" />
 
 
         <LinearLayout
@@ -36,38 +32,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/padding_xlarge"
-                android:layout_marginTop="@dimen/padding_large"
+                android:layout_marginTop="@dimen/padding_normal"
                 android:layout_marginRight="@dimen/padding_xlarge"
                 android:background="@drawable/bg_dialog_button"
-                android:hint="Full Name"
-                android:padding="@dimen/padding_tiny_small"
+                android:hint="UserName"
+                android:padding="@dimen/margin_normal"
                 android:textSize="@dimen/text_size_large" />
 
-
-            <EditText
-                android:id="@+id/llphonenumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/padding_xlarge"
-                android:layout_marginTop="@dimen/padding_large"
-                android:layout_marginRight="@dimen/padding_xlarge"
-                android:background="@drawable/bg_dialog_button"
-                android:hint="Phone Number"
-                android:inputType="phone"
-                android:padding="@dimen/padding_tiny_small"
-                android:textSize="@dimen/text_size_large" />
 
             <EditText
                 android:id="@+id/llemail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/padding_xlarge"
-                android:layout_marginTop="@dimen/padding_large"
+                android:layout_marginTop="@dimen/padding_normal"
                 android:layout_marginRight="@dimen/padding_xlarge"
                 android:background="@drawable/bg_dialog_button"
-                android:hint="E-mail Andress"
+                android:hint="Email"
                 android:inputType="textEmailAddress"
-                android:padding="@dimen/padding_tiny_small"
+                android:padding="@dimen/margin_normal"
                 android:textSize="@dimen/text_size_large" />
 
             <EditText
@@ -75,13 +58,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/padding_xlarge"
-                android:layout_marginTop="@dimen/padding_large"
+                android:layout_marginTop="@dimen/padding_normal"
                 android:layout_marginRight="@dimen/padding_xlarge"
                 android:background="@drawable/bg_dialog_button"
                 android:hint="Password"
-                android:inputType="numberPassword"
-                android:padding="@dimen/padding_tiny_small"
+                android:inputType="textPassword"
+                android:padding="@dimen/margin_normal"
                 android:textSize="@dimen/text_size_large" />
+
         </LinearLayout>
 
         <Button
@@ -89,11 +73,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/padding_xxlarge"
-            android:layout_marginTop="@dimen/padding_xxlarge"
+            android:layout_marginTop="@dimen/padding_large"
             android:layout_marginRight="@dimen/padding_xxlarge"
             android:background="@drawable/bg_dialog_button"
             android:text="Signup"
             android:textSize="@dimen/text_size_large" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/padding_xxlarge"
+            android:layout_marginTop="@dimen/padding_xxxlarge"
+            android:layout_marginRight="@dimen/padding_xxlarge"
+            android:text="GOOD FOOD | Ứng dụng đặt đồ ăn 24/7"
+            android:textSize="@dimen/text_size_normal" />
+
+
 
     </LinearLayout>
 </LinearLayout>

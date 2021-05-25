@@ -1,66 +1,68 @@
 package com.example.managefood.Model;
 
 public class Food {
-    private String ma,ten,moTa ;
-    private int gia,soLuong,hinhAnh;
+    private String Type,Name,Description ,Image,Status;
+    private int Price;
 
     public Food() {
     }
 
-    public Food(String ma, String ten, int gia, int soLuong, int hinhAnh,String moTa) {
-        this.ma = ma;
-        this.ten = ten;
-        this.moTa = moTa;
-        this.gia = gia;
-        this.soLuong = soLuong;
-        this.hinhAnh = hinhAnh;
+    public Food(String type, String name, String description, int price, String status, String image) {
+        Type = type;
+        Name = name;
+        Description = description;
+        Price = price;
+        Status = status;
+        Image = image;
     }
 
-    public String getMa() {
-        return ma;
+    public String getType() {
+        return Type;
     }
 
-    public void setMa(String ma) {
-        this.ma = ma;
+    public void setType(String type) {
+        Type = type;
     }
 
-    public String getTen() {
-        return ten;
+    public String getName() {
+        return Name;
     }
 
-    public void setTen(String ten) {
-        this.ten = ten;
+    public void setName(String name) {
+        Name = name;
     }
 
-    public String getMoTa() {
-        return moTa;
+    public String getDescription() {
+        return Description;
     }
 
-    public void setMoTa(String moTa) {
-        this.moTa = moTa;
+    public void setDescription(String description) {
+        Description = description;
     }
 
-    public int getGia() {
-        return gia;
+    public int getPrice() {
+        return Price;
     }
 
-    public void setGia(int gia) {
-        this.gia = gia;
+    public void setPrice(int price) {
+        Price = price;
     }
 
-    public int getSoLuong() {
-        return soLuong;
+
+
+    public String getImage() {
+        return Image;
     }
 
-    public void setSoLuong(int soLuong) {
-        this.soLuong = soLuong;
+    public void setImage(String image) {
+        Image = image;
     }
 
-    public int getHinhAnh() {
-        return hinhAnh;
+    public void setStatus(String status) {
+        Status = status;
     }
 
-    public void setHinhAnh(int hinhAnh) {
-        this.hinhAnh = hinhAnh;
+    public String getStatus() {
+        return Status;
     }
 }

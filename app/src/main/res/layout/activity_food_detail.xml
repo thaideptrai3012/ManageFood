@@ -64,15 +64,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
-            android:layout_weight="1"
-            android:text="Button" />
+            android:layout_weight="0.5"
+            android:text="Mua ngay" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="4"
             android:layout_marginHorizontal="8dp"
-            android:text="Button" />
+            android:text="Thêm vào giỏ hàng" />
     </LinearLayout>
 </LinearLayout>
