@@ -28,8 +28,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     NavigationView nav_view;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
-    FragmentManager fragmentManager;
-    FragmentTransaction fragmentTransaction;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,12 +40,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 R.string.open, R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
-
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         nav_view.setNavigationItemSelectedListener(this);
-
-
 
     }
 
