@@ -1,6 +1,9 @@
 package com.example.managefood.Model;
 
-public class Food {
+import java.io.Serializable;
+import java.text.DecimalFormat;
+
+public class Food implements Serializable {
     private String Type,Name,Description ,Image,Status;
     private int Price;
 
@@ -15,7 +18,10 @@ public class Food {
         Status = status;
         Image = image;
     }
-
+    public String getPriceFormated(){
+        DecimalFormat formatter = new DecimalFormat("###,###,###");
+        return formatter.format(Price);
+    }
     public String getType() {
         return Type;
     }
