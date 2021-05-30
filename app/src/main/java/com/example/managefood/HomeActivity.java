@@ -5,11 +5,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-<<<<<<< HEAD
 import android.widget.TextView;
-=======
 import android.widget.ImageView;
->>>>>>> d14e0ee06269317c53247c1c25ef59157ceb3a2c
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,10 +21,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.managefood.Model.Food;
 import com.google.android.material.navigation.NavigationView;
-<<<<<<< HEAD
 import com.google.firebase.auth.FirebaseAuth;
-=======
->>>>>>> d14e0ee06269317c53247c1c25ef59157ceb3a2c
 
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -62,9 +56,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         actionBarDrawerToggle.syncState();
         nav_view.setNavigationItemSelectedListener(this);
 
-<<<<<<< HEAD
 
-=======
         imgFastFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,7 +89,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
             }
         });
->>>>>>> d14e0ee06269317c53247c1c25ef59157ceb3a2c
     }
 
 
