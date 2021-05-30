@@ -8,70 +8,100 @@
     tools:context=".FoodDetailActivity">
 
     <LinearLayout
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
         android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/imgSanPham"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="20dp"
-            app:srcCompat="@drawable/banhtrangtron" />
 
         <TextView
             android:id="@+id/tvTen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
+            android:textSize="22dp"
+            android:layout_marginVertical="8dp"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="8dp"
-            android:textColor="#000"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/tGia"
+            android:textColor="#605C5C"
+            android:textStyle="bold"
+            android:text="Salad không rau" />
+        <ImageView
+            android:id="@+id/imgSanPham"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="8dp"
-            android:textColor="#000"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/tvMoTa"
+            android:layout_height="200dp"
+            android:layout_marginHorizontal="15dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/saladdaudo" />
+        <ScrollView
             android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvMoTa"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:textSize="16dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="#000"
+                android:layout_marginTop="15dp"
+                android:text="Mô tả ở đây ..." />
+        </ScrollView>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="8dp"
-            android:textColor="#000"
-
-            android:text="TextView" />
-
+            android:id="@+id/tvTru"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:paddingHorizontal="10dp"
+            android:text="-"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvSoLuongDetail"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:paddingHorizontal="20dp"
+            android:text="1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvCong"
+            android:textStyle="bold"
+            android:paddingHorizontal="10dp"
+            android:textSize="20dp"
+            android:text="+"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnMuaNgay"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tvGiaDetail"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_weight="0.5"
-            android:text="Mua ngay" />
+            android:textSize="16dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="#000"
+            android:text="20.000.000đ" />
 
         <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
+            android:id="@+id/btnThemVaoGioHang"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
+            android:layout_weight="3"
             android:layout_marginHorizontal="8dp"
             android:text="Thêm vào giỏ hàng" />
     </LinearLayout>

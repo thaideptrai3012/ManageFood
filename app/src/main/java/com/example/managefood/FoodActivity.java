@@ -78,10 +78,11 @@ public class FoodActivity extends AppCompatActivity {
             public void onClick(Food food) {
                 Intent intent = new Intent(FoodActivity.this,FoodDetailActivity.class);
                 Bundle bundle = new Bundle();
+                bundle.putSerializable("FOOD",food);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
-
-
     }
 
     public void initView(){

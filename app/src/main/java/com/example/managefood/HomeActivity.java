@@ -5,8 +5,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+<<<<<<< HEAD
 import android.widget.TextView;
 import android.widget.ImageView;
+=======
+
+import android.widget.TextView;
+
+import android.widget.ImageView;
+
+>>>>>>> f79fe566efcbb8823f5290a602e834caa58c724b
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,7 +29,13 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.managefood.Model.Food;
 import com.google.android.material.navigation.NavigationView;
+<<<<<<< HEAD
 import com.google.firebase.auth.FirebaseAuth;
+=======
+
+import com.google.firebase.auth.FirebaseAuth;
+
+>>>>>>> f79fe566efcbb8823f5290a602e834caa58c724b
 
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -89,6 +103,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
             }
         });
+<<<<<<< HEAD
+=======
+
+>>>>>>> f79fe566efcbb8823f5290a602e834caa58c724b
     }
 
 
