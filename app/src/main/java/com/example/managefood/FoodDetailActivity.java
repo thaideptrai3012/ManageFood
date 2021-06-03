@@ -26,17 +26,13 @@ public class FoodDetailActivity extends AppCompatActivity {
     Button btnThemGioHang;
     Food food;
     DecimalFormat formatter;
-    public static List<FoodOrder> listFoodOrder;
-
     int soLuong = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_detail);
         initView();
-        if(listFoodOrder == null){
-            listFoodOrder = new ArrayList<>();
-        }
+
         Intent intent = getIntent();
         formatter = new DecimalFormat("###,###,###");
         Bundle bundle = intent.getExtras();
@@ -73,8 +69,21 @@ public class FoodDetailActivity extends AppCompatActivity {
         btnThemGioHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listFoodOrder.add(new FoodOrder(food,soLuong));
+                if(HomeActivity.listFoodOrder.size()>0){
+                    for (int i = 0; i < HomeActivity.listFoodOrder.size(); i++){
+                        //nếu ID giống nhau => sản phẩm đã tồn tại trong giỏ hàng:
+                        if(food.getID().equalsIgnoreCase(HomeActivity.listFoodOrder.get(i).getFood().getID())){
+                            // -> cộng dồn số lượng :
+                            HomeActivity.listFoodOrder.get(i).setSoLuong(HomeActivity.listFoodOrder.get(i).getSoLuong()+soLuong);
+                            Toast.makeText(FoodDetailActivity.this,"Thêm thành công",Toast.LENGTH_SHORT).show();
+                            onBackPressed();
+                            return;
+                        }
+                    }
+                }
+                HomeActivity.listFoodOrder.add(new FoodOrder(food,soLuong));
                 Toast.makeText(FoodDetailActivity.this,"Thêm thành công",Toast.LENGTH_SHORT).show();
+                onBackPressed();
             }
         });
     }

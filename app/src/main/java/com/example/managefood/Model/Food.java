@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.text.DecimalFormat;
 
 public class Food implements Serializable {
-    private String Type,Name,Description ,Image,Status;
+    private String ID,Type,Name,Description ,Image,Status;
     private int Price;
 
     public Food() {
@@ -22,6 +22,15 @@ public class Food implements Serializable {
         DecimalFormat formatter = new DecimalFormat("###,###,###");
         return formatter.format(Price);
     }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
     public String getType() {
         return Type;
     }

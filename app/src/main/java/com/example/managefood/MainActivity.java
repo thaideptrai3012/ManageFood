@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
@@ -31,25 +32,21 @@ import com.google.firebase.database.FirebaseDatabase;
 import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
-    private String username, password;
-    private EditText llemail;
-    private EditText llfullname;
-    private EditText llpassword;
-    private EditText llrepassword;
+//    private String username, password;
+//    private EditText llemail;
+//    private EditText llfullname;
+//    private EditText llpassword;
+//    private EditText llrepassword;
     private EditText editTextUsername;
     private EditText editTextPassword;
-
-
     private CheckBox checkBox;
-
     private TextView buttonforget;
     private TextView buttonSignup;
     private Button btnLogin;
-
     private SharedPreferences loginPreferences;
     private SharedPreferences.Editor loginPrefsEditor;
     private Boolean saveLogin;
-
+    public static String user;
     private FirebaseAuth auth;
 
     @Override
@@ -129,8 +126,11 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onComplete(Task<AuthResult> task) {
+                    Log.e("EMail",email);
+                    Log.e("PASS",password);
                     if (task.isSuccessful()) {
-                        Toast.makeText(MainActivity.this, "Đăng nhập thành công", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "Đăng nhập thành công ", Toast.LENGTH_LONG).show();
+                        user = email;
                         Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromWindow(editTextUsername.getWindowToken(), 0);

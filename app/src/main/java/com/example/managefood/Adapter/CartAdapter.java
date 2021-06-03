@@ -5,25 +5,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.managefood.Model.Food;
+import com.example.managefood.CartActivity;
+import com.example.managefood.HomeActivity;
+import com.example.managefood.Interface.OnItemsRecycleViewClicked;
 import com.example.managefood.Model.FoodOrder;
 import com.example.managefood.R;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
+public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder>{
     List<FoodOrder>  foodOrders;
+    DecimalFormat formatter;
 
     public CartAdapter(List<FoodOrder> foodOrders) {
         this.foodOrders = foodOrders;
+    }
+    private OnItemsRecycleViewClicked onItemsRecycleViewClicked;
+
+    public void setOnItemsRecycleViewClicked(OnItemsRecycleViewClicked onItemsRecycleViewClicked) {
+        this.onItemsRecycleViewClicked = onItemsRecycleViewClicked;
     }
 
     @NonNull
@@ -40,8 +47,28 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.tvTen.setText(foodOrder.getFood().getName());
         Picasso.with(holder.imgFood.getContext()).load(foodOrder.getFood().getImage()).into(holder.imgFood);
 
-        DecimalFormat formatter = new DecimalFormat("###,###,###");
+        formatter = new DecimalFormat("###,###,###");
         holder.tvGia.setText(formatter.format(foodOrder.getThanhTien())+"đ");
+
+        holder.tvCong.setOnClickListener(v->{
+            foodOrder.setSoLuong(foodOrder.getSoLuong()+1);
+            notifyDataSetChanged();
+            if(HomeActivity.listFoodOrder.size()>0) {
+                for (int i = 0; i < HomeActivity.listFoodOrder.size(); i++) {
+                    CartActivity.thanhTien += (int) HomeActivity.listFoodOrder.get(i).getThanhTien();
+                }
+            }
+        });
+        holder.tvTru.setOnClickListener(v->{
+            if(foodOrder.getSoLuong()>0) {
+                foodOrder.setSoLuong(foodOrder.getSoLuong()-1);
+                notifyDataSetChanged();
+            }
+            if(foodOrder.getSoLuong() <= 0){
+                HomeActivity.listFoodOrder.remove(foodOrder);
+                notifyItemRemoved(position);
+            }
+        });
 
     }
 
@@ -52,12 +79,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     public class CartViewHolder extends RecyclerView.ViewHolder {
         ImageView imgFood;
         TextView tvTen,tvGia,tvSoLuong;
+        TextView tvCong,tvTru;
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
             imgFood = itemView.findViewById(R.id.imgFoodCart);
             tvGia = itemView.findViewById(R.id.tvGiaCart);
             tvTen = itemView.findViewById(R.id.tvTenCart);
             tvSoLuong = itemView.findViewById(R.id.tvSoLuongCart);
+            tvCong = itemView.findViewById(R.id.tvCongCart);
+            tvTru = itemView.findViewById(R.id.tvTruCart);
         }
     }
 }

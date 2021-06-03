@@ -2,10 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_marginLeft="-10dp"
-    android:layout_marginRight="-10dp"
     android:layout_height="wrap_content"
-    android:background="@android:drawable/dialog_holo_light_frame"
     android:orientation="vertical">
 
     <LinearLayout
@@ -49,17 +46,50 @@
                     android:textColor="#000000"
                     android:textSize="20sp"
                     android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvSoLuongCart"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp"
-                    android:layout_weight="1"
-                    android:text="2"
-                    android:textColor="#302B2B"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvTruCart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:text="-"
+                        android:gravity="end|center_horizontal"
+                        android:textColor="#AFAFAF"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvSoLuongCart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="2"
+                        android:textColor="#302B2B"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvCongCart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:text="+"
+                        android:textColor="#FF0000"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -80,10 +110,12 @@
                 <TextView
                     android:id="@+id/tvGiaCart"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginVertical="8dp"
                     android:layout_weight="1"
                     android:text="15.000 VNĐ"
+                    android:gravity="end"
+                    android:paddingRight="35dp"
                     android:textColor="#FB1818"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -94,6 +126,6 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:background="@drawable/bg_item_food" />
+        android:layout_height="0.7dp"
+        android:background="#7E7E7E" />
 </LinearLayout>

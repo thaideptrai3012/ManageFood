@@ -1,30 +1,35 @@
 package com.example.managefood;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.managefood.Adapter.FoodAdapter;
 import com.example.managefood.Interface.OnItemsRecycleViewClicked;
 import com.example.managefood.Model.Food;
+import com.example.managefood.Model.FoodOrder;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FoodActivity extends AppCompatActivity {
-    ImageView imgBack,imgGioHang;
+    ImageView imgBack, imgGioHang;
     EditText edSearch;
     RecyclerView rvBeverage;
     List<Food> foodList;
@@ -32,13 +37,14 @@ public class FoodActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference myRef;
     String TYPE_FOOD = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_beverage);
+        setContentView(R.layout.activity_food);
         initView();
 
-        Intent  intent = getIntent();
+        Intent intent = getIntent();
         TYPE_FOOD = intent.getStringExtra("TYPE_FOOD");
         foodList = new ArrayList<>();
         foodAdapter = new FoodAdapter(foodList);
@@ -49,16 +55,16 @@ public class FoodActivity extends AppCompatActivity {
         myRef = database.getReference();
 
         // Read from the database
-        myRef.child("Food").addValueEventListener(new ValueEventListener() {
+        myRef.child("Food").orderByChild("Type").equalTo(TYPE_FOOD).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                Iterable<DataSnapshot> convert =dataSnapshot.getChildren();
-                for (DataSnapshot children : convert){
-                    Food food =children.getValue(Food.class);
-                    if (food.getType().equalsIgnoreCase(TYPE_FOOD))
-                        foodList.add(food);
+                Iterable<DataSnapshot> convert = dataSnapshot.getChildren();
+                for (DataSnapshot children : convert) {
+                    Food food = children.getValue(Food.class);
+                    food.setID(children.getRef() + "");
+                    foodList.add(food);
                 }
                 rvBeverage.setAdapter(foodAdapter);
             }
@@ -70,22 +76,71 @@ public class FoodActivity extends AppCompatActivity {
             }
         });
 
-
+        imgGioHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(FoodActivity.this, CartActivity.class));
+            }
+        });
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         //on item rv click:
         foodAdapter.setOnItemsRecycleViewClicked(new OnItemsRecycleViewClicked() {
             @Override
             public void onClick(Food food) {
-                Intent intent = new Intent(FoodActivity.this,FoodDetailActivity.class);
+                Intent intent = new Intent(FoodActivity.this, FoodDetailActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("FOOD",food);
+                bundle.putSerializable("FOOD", food);
                 intent.putExtras(bundle);
                 startActivity(intent);
+            }
+
+        });
+
+        //tìm kiếm :
+        edSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Log.e("Snap2",charSequence.toString());
+                myRef.child("Food").orderByChild("Name").equalTo("Trà sữa match").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Iterable<DataSnapshot> convert = snapshot.getChildren();
+                        Log.e("Snap",snapshot+"");
+                        for (DataSnapshot children : convert) {
+                            Food food = children.getValue(Food.class);
+                            food.setID(children.getRef() + "");
+                            foodList.add(food);
+                        }
+                        rvBeverage.setAdapter(foodAdapter);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
     }
 
-    public void initView(){
+    public void initView() {
         imgGioHang = findViewById(R.id.imgGioHangBeverage);
         imgBack = findViewById(R.id.imgBackBeverage);
         edSearch = findViewById(R.id.edSearchBeverage);

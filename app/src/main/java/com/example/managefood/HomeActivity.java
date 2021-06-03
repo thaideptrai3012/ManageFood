@@ -1,5 +1,6 @@
 package com.example.managefood;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -23,10 +24,13 @@ import androidx.fragment.app.FragmentTransaction;
 
 
 import com.example.managefood.Model.Food;
+import com.example.managefood.Model.FoodOrder;
 import com.google.android.material.navigation.NavigationView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -34,9 +38,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     NavigationView nav_view;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
-    FragmentManager fragmentManager;
-    FragmentTransaction fragmentTransaction;
-    ImageView imgFastFood, imgRice, imgHealthy, imgBeverage;
+    ImageView imgFastFood, imgRice, imgHealthy, imgBeverage,imgGioHang;
+    public static List<FoodOrder> listFoodOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +52,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         imgRice = findViewById(R.id.rice);
         imgHealthy = findViewById(R.id.healthyFood);
         imgFastFood = findViewById(R.id.fastFood);
-
+        imgGioHang = findViewById(R.id.imgGioHang);
+        if(listFoodOrder == null){
+            listFoodOrder = new ArrayList<>();
+        }
 
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
@@ -61,7 +67,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         actionBarDrawerToggle.syncState();
         nav_view.setNavigationItemSelectedListener(this);
 
-
+        imgGioHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this,CartActivity.class));
+            }
+        });
         imgFastFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
