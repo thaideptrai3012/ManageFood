@@ -2,20 +2,11 @@ package com.example.managefood;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-<<<<<<< HEAD
-import android.widget.TextView;
-import android.widget.ImageView;
-=======
-
-import android.widget.TextView;
 
 import android.widget.ImageView;
 
->>>>>>> f79fe566efcbb8823f5290a602e834caa58c724b
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -27,15 +18,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 
-import com.example.managefood.Model.Food;
 import com.google.android.material.navigation.NavigationView;
-<<<<<<< HEAD
-import com.google.firebase.auth.FirebaseAuth;
-=======
-
-import com.google.firebase.auth.FirebaseAuth;
-
->>>>>>> f79fe566efcbb8823f5290a602e834caa58c724b
 
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -103,10 +86,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
             }
         });
-<<<<<<< HEAD
-=======
-
->>>>>>> f79fe566efcbb8823f5290a602e834caa58c724b
     }
 
 
@@ -114,6 +93,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         switch (id) {
+            case R.id.addFood:
+                Intent a = new Intent(HomeActivity.this, AddFoodActivity.class);
+                startActivity(a);
+                break;
             case R.id.cart:
                 Intent x = new Intent(HomeActivity.this, CartActivity.class);
                 startActivity(x);
