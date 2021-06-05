@@ -53,7 +53,6 @@ public class FoodActivity extends AppCompatActivity {
         rvBeverage.setLayoutManager(linearLayoutManager);
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
-
         // Read from the database
         myRef.child("Food").orderByChild("Type").equalTo(TYPE_FOOD).addValueEventListener(new ValueEventListener() {
             @Override
@@ -89,18 +88,6 @@ public class FoodActivity extends AppCompatActivity {
             }
         });
 
-        //on item rv click:
-        foodAdapter.setOnItemsRecycleViewClicked(new OnItemsRecycleViewClicked() {
-            @Override
-            public void onClick(Food food) {
-                Intent intent = new Intent(FoodActivity.this, FoodDetailActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("FOOD", food);
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-
-        });
 
         //tìm kiếm :
         edSearch.addTextChangedListener(new TextWatcher() {
@@ -112,17 +99,22 @@ public class FoodActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 Log.e("Snap2",charSequence.toString());
-                myRef.child("Food").orderByChild("Name").equalTo("Trà sữa match").addValueEventListener(new ValueEventListener() {
+                myRef.child("Food").orderByChild("Name").startAt(charSequence.toString()+"").endAt(charSequence.toString()+"\uf8ff").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Iterable<DataSnapshot> convert = snapshot.getChildren();
-                        Log.e("Snap",snapshot+"");
+                        Log.e("List",snapshot+"");
+
+                        foodList.clear();
                         for (DataSnapshot children : convert) {
                             Food food = children.getValue(Food.class);
-                            food.setID(children.getRef() + "");
-                            foodList.add(food);
+                            if(food.getType().equalsIgnoreCase(TYPE_FOOD)) {
+                                food.setID(children.getRef() + "");
+                                foodList.add(food);
+                            }
                         }
-                        rvBeverage.setAdapter(foodAdapter);
+                        foodAdapter.notifyDataSetChanged();
+                        Log.e("List",foodList.size()+"");
                     }
 
                     @Override
@@ -138,6 +130,19 @@ public class FoodActivity extends AppCompatActivity {
 
             }
         });
+        //on item rv click:
+        foodAdapter.setOnItemsRecycleViewClicked(new OnItemsRecycleViewClicked() {
+            @Override
+            public void onClick(Food food) {
+                Intent intent = new Intent(FoodActivity.this, FoodDetailActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("FOOD", food);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     public void initView() {
