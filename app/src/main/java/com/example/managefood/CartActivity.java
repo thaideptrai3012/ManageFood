@@ -51,10 +51,7 @@ public class CartActivity extends AppCompatActivity {
                 thanhTien += (int) HomeActivity.listFoodOrder.get(i).getThanhTien();
             }
         }
-
-
         tvThanhTien.setText(""+thanhTien +" VNĐ");
-
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

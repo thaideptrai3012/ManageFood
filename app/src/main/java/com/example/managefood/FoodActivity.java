@@ -98,13 +98,10 @@ public class FoodActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                Log.e("Snap2",charSequence.toString());
                 myRef.child("Food").orderByChild("Name").startAt(charSequence.toString()+"").endAt(charSequence.toString()+"\uf8ff").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Iterable<DataSnapshot> convert = snapshot.getChildren();
-                        Log.e("List",snapshot+"");
-
                         foodList.clear();
                         for (DataSnapshot children : convert) {
                             Food food = children.getValue(Food.class);
@@ -114,7 +111,6 @@ public class FoodActivity extends AppCompatActivity {
                             }
                         }
                         foodAdapter.notifyDataSetChanged();
-                        Log.e("List",foodList.size()+"");
                     }
 
                     @Override
