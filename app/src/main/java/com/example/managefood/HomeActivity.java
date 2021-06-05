@@ -113,6 +113,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         switch (id) {
+            case R.id.addFood:
+                Intent x1 = new Intent(HomeActivity.this, ListFoodActivity.class);
+                startActivity(x1);
+                break;
             case R.id.cart:
                 Intent x = new Intent(HomeActivity.this, CartActivity.class);
                 startActivity(x);

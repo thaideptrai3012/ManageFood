@@ -19,7 +19,8 @@
 
         <ImageView
             android:id="@+id/img_BackListFoodHang"
-            android:layout_width="30dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
             android:layout_height="30dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
@@ -28,20 +29,31 @@
 
         <TextView
             android:id="@+id/textView12"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:paddingLeft="88dp"
+            android:layout_weight="3"
+            android:gravity="center_horizontal"
             android:text="Danh sách món ăn"
             android:textSize="22dp"
             android:textStyle="bold"
             tools:ignore="RtlCompat" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Thêm món"
+            android:layout_marginTop="10dp"
+            android:textColor="#FF0000"
+            android:textStyle="bold"
+            android:layout_marginRight="5dp"
+            android:textSize="18sp"
+            android:id="@+id/tvThem"/>
 
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lv_oder"
+        android:id="@+id/rv_oder"
         android:layout_width="match_parent"
         android:layout_height="570dp"
         android:layout_marginTop="6dp"
