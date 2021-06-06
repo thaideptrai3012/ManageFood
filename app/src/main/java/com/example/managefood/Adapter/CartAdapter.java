@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.managefood.CartActivity;
 import com.example.managefood.HomeActivity;
 import com.example.managefood.Interface.OnItemsRecycleViewClicked;
+import com.example.managefood.Interface.OnWidgetRecycleviewClicked;
 import com.example.managefood.Model.FoodOrder;
 import com.example.managefood.R;
 import com.squareup.picasso.Picasso;
@@ -23,14 +24,15 @@ import java.util.List;
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder>{
     List<FoodOrder>  foodOrders;
     DecimalFormat formatter;
-
+    int thanhTien;
     public CartAdapter(List<FoodOrder> foodOrders) {
         this.foodOrders = foodOrders;
     }
-    private OnItemsRecycleViewClicked onItemsRecycleViewClicked;
+    private OnWidgetRecycleviewClicked onWidgetRecycleviewClicked;
 
-    public void setOnItemsRecycleViewClicked(OnItemsRecycleViewClicked onItemsRecycleViewClicked) {
-        this.onItemsRecycleViewClicked = onItemsRecycleViewClicked;
+
+    public void setOnWidgetRecycleviewClicked(OnWidgetRecycleviewClicked onWidgetRecycleviewClicked) {
+        this.onWidgetRecycleviewClicked = onWidgetRecycleviewClicked;
     }
 
     @NonNull
@@ -49,15 +51,18 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
         formatter = new DecimalFormat("###,###,###");
         holder.tvGia.setText(formatter.format(foodOrder.getThanhTien())+"đ");
-
         holder.tvCong.setOnClickListener(v->{
             foodOrder.setSoLuong(foodOrder.getSoLuong()+1);
             notifyDataSetChanged();
             if(HomeActivity.listFoodOrder.size()>0) {
+                thanhTien = 0;
                 for (int i = 0; i < HomeActivity.listFoodOrder.size(); i++) {
-                    CartActivity.thanhTien += (int) HomeActivity.listFoodOrder.get(i).getThanhTien();
+                    thanhTien += (int) HomeActivity.listFoodOrder.get(i).getThanhTien();
                 }
+            }else{
+                thanhTien = 0;
             }
+            onWidgetRecycleviewClicked.onClick(thanhTien);
         });
         holder.tvTru.setOnClickListener(v->{
             if(foodOrder.getSoLuong()>0) {
@@ -68,6 +73,16 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 HomeActivity.listFoodOrder.remove(foodOrder);
                 notifyItemRemoved(position);
             }
+            if(HomeActivity.listFoodOrder.size()>0) {
+                thanhTien = 0;
+                for (int i = 0; i < HomeActivity.listFoodOrder.size(); i++) {
+                    thanhTien += (int) HomeActivity.listFoodOrder.get(i).getThanhTien();
+                }
+            }else{
+                thanhTien = 0;
+            }
+            onWidgetRecycleviewClicked.onClick(thanhTien);
+
         });
 
     }

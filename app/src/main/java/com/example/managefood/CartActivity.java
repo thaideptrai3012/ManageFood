@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,14 +20,22 @@ import android.widget.Toast;
 
 import com.example.managefood.Adapter.CartAdapter;
 import com.example.managefood.Interface.OnItemsRecycleViewClicked;
+import com.example.managefood.Interface.OnWidgetRecycleviewClicked;
 import com.example.managefood.Model.Food;
 import com.example.managefood.Model.FoodOrder;
+import com.example.managefood.Model.HoaDon;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class CartActivity extends AppCompatActivity {
@@ -33,38 +45,92 @@ public class CartActivity extends AppCompatActivity {
     CartAdapter cartAdapter;
     ImageView imgBack;
     DecimalFormat formatter;
-    public static int thanhTien = 0;
+    int thanhTien = 0;
+
+    DatabaseReference  myReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         initView();
+        myReference = FirebaseDatabase.getInstance().getReference();
         formatter = new DecimalFormat("###,###,###");
-
         cartAdapter = new CartAdapter(HomeActivity.listFoodOrder);
         rvFoodOrder.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rvFoodOrder.setLayoutManager(linearLayoutManager);
         rvFoodOrder.setAdapter(cartAdapter);
         if (HomeActivity.listFoodOrder.size() > 0) {
+            thanhTien = 0;
             for (int i = 0; i < HomeActivity.listFoodOrder.size(); i++) {
                 thanhTien += (int) HomeActivity.listFoodOrder.get(i).getThanhTien();
             }
+            tvThanhTien.setText(formatter.format(thanhTien) +" VNĐ");
+        }else {
+            tvThanhTien.setText("0 VNĐ");
         }
-        tvThanhTien.setText(""+thanhTien +" VNĐ");
+
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
             }
         });
+
+        //Bắt sự kiện tha đổi số lượng sản phẩm -> thay đổi tổng tiền
+        cartAdapter.setOnWidgetRecycleviewClicked(new OnWidgetRecycleviewClicked() {
+            @Override
+            public void onClick(int tien) {
+                thanhTien = tien;
+                tvThanhTien.setText(formatter.format(tien)+" VNĐ");
+            }
+        });
+
+        //Thanh toán -> Tạo hóa đơn:
         btnThanhToan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //check rỗng
                 if(HomeActivity.listFoodOrder.size() <1){
                     Toast.makeText(CartActivity.this,"Giỏ hàng rỗng",Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                //không rỗng :
+                AlertDialog.Builder builder = new AlertDialog.Builder(CartActivity.this);
+
+                // Set Title and Message:
+                builder.setTitle("Thanh toán").setMessage("Thanh toán đơn hàng này?");
+
+                //
+                builder.setCancelable(true);
+
+                // Create "Yes" button with OnClickListener.
+                builder.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Date date = Calendar.getInstance().getTime();
+                        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                        String mDate = df.format(date);
+                        HoaDon hoaDon = new HoaDon(MainActivity.user,mDate,HomeActivity.listFoodOrder,thanhTien);
+                        myReference.child("DonHang").push().setValue(hoaDon);
+                        Toast.makeText(getApplicationContext(),"Cảm ơn bạn đã mua hàng",Toast.LENGTH_SHORT).show();
+                        HomeActivity.listFoodOrder.clear();
+                        startActivity(new Intent(CartActivity.this,OrderActivity.class));
+                    }
+                });
+                // Create "No" button with OnClickListener.
+                builder.setNegativeButton("Mua sau", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //  Cancel
+                        dialog.cancel();
+                    }
+                });
+
+                // Create AlertDialog:
+                AlertDialog alert = builder.create();
+                alert.show();
             }
         });
     }
