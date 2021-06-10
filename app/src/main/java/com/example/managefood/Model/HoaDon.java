@@ -1,15 +1,17 @@
 package com.example.managefood.Model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class HoaDon {
+public class HoaDon implements Serializable {
     private String maHoaDon,khachHang;
     private String thoiGian;
     private List<FoodOrder> foodOrders;
     private double tongTien;
 
     public HoaDon() {
+
     }
 
     public HoaDon(String khachHang, String thoiGian, List<FoodOrder> foodOrders, double tongTien) {

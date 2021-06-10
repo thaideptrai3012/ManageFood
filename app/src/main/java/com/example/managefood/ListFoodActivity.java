@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -60,6 +61,12 @@ public class ListFoodActivity extends AppCompatActivity {
         });
         tvThem.setOnClickListener(v ->{
             startActivity(new Intent(ListFoodActivity.this,AddFoodActivity.class));
+        });
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
         });
     }
     private void initView(){
