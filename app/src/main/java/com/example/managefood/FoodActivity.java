@@ -62,7 +62,7 @@ public class FoodActivity extends AppCompatActivity {
                 Iterable<DataSnapshot> convert = dataSnapshot.getChildren();
                 for (DataSnapshot children : convert) {
                     Food food = children.getValue(Food.class);
-                    food.setID(children.getRef() + "");
+                    food.setID(children.getKey() + "");
                     foodList.add(food);
                 }
                 rvBeverage.setAdapter(foodAdapter);

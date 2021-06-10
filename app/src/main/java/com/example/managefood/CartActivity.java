@@ -4,39 +4,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.managefood.Adapter.CartAdapter;
-import com.example.managefood.Interface.OnItemsRecycleViewClicked;
 import com.example.managefood.Interface.OnWidgetRecycleviewClicked;
-import com.example.managefood.Model.Food;
-import com.example.managefood.Model.FoodOrder;
 import com.example.managefood.Model.HoaDon;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 public class CartActivity extends AppCompatActivity {
     RecyclerView rvFoodOrder;
@@ -117,7 +104,9 @@ public class CartActivity extends AppCompatActivity {
                         myReference.child("DonHang").push().setValue(hoaDon);
                         Toast.makeText(getApplicationContext(),"Cảm ơn bạn đã mua hàng",Toast.LENGTH_SHORT).show();
                         HomeActivity.listFoodOrder.clear();
-                        startActivity(new Intent(CartActivity.this,OrderActivity.class));
+
+                        Intent intent = new Intent(CartActivity.this, HomeActivity.class);
+                        startActivity(intent);
                     }
                 });
                 // Create "No" button with OnClickListener.

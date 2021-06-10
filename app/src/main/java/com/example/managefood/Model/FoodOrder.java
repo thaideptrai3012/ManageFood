@@ -6,6 +6,9 @@ public class FoodOrder {
     Food food;
     int soLuong;
 
+    public FoodOrder() {
+    }
+
     public FoodOrder(Food food, int soLuong) {
         this.food = food;
         this.soLuong = soLuong;
