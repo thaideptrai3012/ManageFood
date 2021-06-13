@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,7 +28,7 @@ import java.util.List;
 public class ListFoodActivity extends AppCompatActivity {
     ImageView imgBack;
     RecyclerView rvList;
-    TextView tvThem;
+    ImageView btnThemMon;
     DatabaseReference myRef;
     List<Food> foodList;
     Food_ChuCuaHang_Adapter foodAdapter;
@@ -59,7 +61,7 @@ public class ListFoodActivity extends AppCompatActivity {
 
             }
         });
-        tvThem.setOnClickListener(v ->{
+        btnThemMon.setOnClickListener(v ->{
             startActivity(new Intent(ListFoodActivity.this,AddFoodActivity.class));
         });
         imgBack.setOnClickListener(new View.OnClickListener() {
@@ -69,9 +71,10 @@ public class ListFoodActivity extends AppCompatActivity {
             }
         });
     }
+
     private void initView(){
         imgBack = findViewById(R.id.img_BackListFoodHang);
         rvList = findViewById(R.id.rv_oder);
-        tvThem = findViewById(R.id.tvThem);
+        btnThemMon = findViewById(R.id.btnThemMon);
     }
 }

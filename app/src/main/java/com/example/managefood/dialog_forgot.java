@@ -45,7 +45,6 @@ public class dialog_forgot extends AppCompatActivity {
                 auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(Task<Void> task) {
-
                         if (task.isSuccessful()) {
                             Toast.makeText(dialog_forgot.this, "Kiểm tra email để lấy lại mật khẩu", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(dialog_forgot.this, MainActivity.class);

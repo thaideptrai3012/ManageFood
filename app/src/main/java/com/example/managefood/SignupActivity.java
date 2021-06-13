@@ -55,16 +55,13 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onComplete(Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-
                     Toast.makeText(SignupActivity.this,
                             "Đăng ký thành công!", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else {
-
                     Toast.makeText(SignupActivity.this,
                             "Đăng ký không thành công!", Toast.LENGTH_LONG).show();
-
                 }
             }
         });

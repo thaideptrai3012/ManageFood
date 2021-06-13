@@ -32,7 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
-//    private String username, password;
+    //    private String username, password;
 //    private EditText llemail;
 //    private EditText llfullname;
 //    private EditText llpassword;
@@ -81,31 +81,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-//        btnLogin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent x = new Intent(MainActivity.this, HomeActivity.class);
-//                startActivity(x);
-//                if (true) {
-//                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//                    imm.hideSoftInputFromWindow(editTextUsername.getWindowToken(), 0);
-//
-//                    username = editTextUsername.getText().toString();
-//                    password = editTextPassword.getText().toString();
-//                }
-//
-//                if (checkBox.isChecked()) {
-//                    loginPrefsEditor.putBoolean("saveLogin", true);
-//                    loginPrefsEditor.putString("username", username);
-//                    loginPrefsEditor.putString("password", password);
-//                    loginPrefsEditor.commit();
-//                } else {
-//                    loginPrefsEditor.clear();
-//                    loginPrefsEditor.commit();
-//                }
-//            }
-//        });
-//
+
         btnLogin.setOnClickListener(v -> {
             String email = editTextUsername.getText().toString();
             String password = editTextPassword.getText().toString();
@@ -118,17 +94,19 @@ public class MainActivity extends AppCompatActivity {
                 loginPrefsEditor.putString("username", email);
                 loginPrefsEditor.putString("password", password);
                 loginPrefsEditor.commit();
+
             } else {
                 loginPrefsEditor.clear();
                 loginPrefsEditor.commit();
+
             }
 
             auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
 
                 @Override
                 public void onComplete(Task<AuthResult> task) {
-                    Log.e("EMail",email);
-                    Log.e("PASS",password);
+                    Log.e("EMail", email);
+                    Log.e("PASS", password);
                     if (task.isSuccessful()) {
                         Toast.makeText(MainActivity.this, "Đăng nhập thành công ", Toast.LENGTH_LONG).show();
                         user = email;
