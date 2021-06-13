@@ -10,11 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="60dp">
+
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_logo_manage_food"/>
+            android:id="@+id/imgAvatarFood"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/food_avatar" />
 
     </LinearLayout>
     <LinearLayout
@@ -23,53 +25,51 @@
         android:orientation="vertical"
         android:layout_marginTop="20dp"
         android:gravity="center">
+
         <EditText
-            android:layout_width="300dp"
-            android:layout_height="50dp"
             android:id="@+id/addFoodNameTxt"
-            android:hint="Tên sản phẩm"/>
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:hint="Tên sản phẩm" />
+
         <EditText
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:id="@+id/addFoodKindTxt"
-            android:hint="Loại sản phẩm"
-            android:layout_marginTop="14dp"/>
-        <EditText
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:id="@+id/statusTxt"
-            android:hint="Trạng thái"
-            android:layout_marginTop="14dp"/>
-        <EditText
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:id="@+id/moTaTxt"
-            android:hint="Mô tả"
-            android:layout_marginTop="14dp"/>
-        <EditText
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:id="@+id/priceTxt"
+            android:id="@+id/edGiaAddFood"
             android:inputType="number"
             android:hint="Giá"
             android:layout_marginTop="14dp"/>
+
+        <EditText
+            android:id="@+id/moTaTxt"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="14dp"
+            android:hint="Mô tả"
+            android:maxLines="1" />
+
+        <Spinner
+            android:id="@+id/spnLoaiFood"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="14dp"
+            />
+
+        <Spinner
+            android:id="@+id/spnTrangThai"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="14dp"
+            />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
             android:layout_marginTop="14dp">
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:id="@+id/imgAvatarFood"
-                android:src="@drawable/food_avatar"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Thêm ảnh"
-                android:id="@+id/btnThemAnh"
-                android:layout_marginLeft="20dp"/>
+
+
 
         </LinearLayout>
         <LinearLayout
@@ -81,6 +81,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/btnAddFood"
+                android:padding="20dp"
+                android:background="@drawable/bg_dialog_button"
                 android:text="Thêm món ăn"/>
         </LinearLayout>
 

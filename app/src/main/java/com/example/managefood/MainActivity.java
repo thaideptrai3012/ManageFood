@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
             String password = editTextPassword.getText().toString();
             if (editTextUsername.getText().toString().isEmpty() || editTextPassword.getText().toString().isEmpty()) {
                 Toast.makeText(MainActivity.this, "Không được để trống!", Toast.LENGTH_LONG).show();
+                return;
             }
             if (checkBox.isChecked()) {
                 loginPrefsEditor.putBoolean("saveLogin", true);

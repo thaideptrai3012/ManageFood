@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
             if (llemail.getText().toString().isEmpty() || llpassword.getText().toString().isEmpty()) {
                 Toast.makeText(LoginActivity.this,
                         "Mời bạn nhập email và password!", Toast.LENGTH_LONG).show();
+                return;
             }
         });
     }

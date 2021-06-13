@@ -54,7 +54,7 @@ public class FoodActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
         // Read from the database
-        myRef.child("Food").orderByChild("Type").equalTo(TYPE_FOOD).addValueEventListener(new ValueEventListener() {
+        myRef.child("Food").orderByChild("type").equalTo(TYPE_FOOD).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
@@ -64,6 +64,7 @@ public class FoodActivity extends AppCompatActivity {
                     Food food = children.getValue(Food.class);
                     food.setID(children.getKey() + "");
                     foodList.add(food);
+                    Log.e("Name",food.getName());
                 }
                 rvBeverage.setAdapter(foodAdapter);
             }

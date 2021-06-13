@@ -10,8 +10,8 @@ public class Food implements Serializable {
     public Food() {
     }
 
-    public Food(String type, String name, String description, int price, String status, String image) {
-        Type = type;
+    public Food(String Type, String name, String description, int price, String status, String image) {
+        this.Type = Type;
         Name = name;
         Description = description;
         Price = price;
