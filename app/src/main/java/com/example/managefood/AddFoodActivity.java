@@ -180,6 +180,7 @@ public class AddFoodActivity extends AppCompatActivity {
                         Food food = new Food(loai,ten,moTa,Integer.parseInt(gia),trangThai,uri.toString());
                         databaseReference.child("Food").push().setValue(food);
                         Toast.makeText(getApplicationContext(),"Thêm thành công",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(AddFoodActivity.this,ListFoodActivity.class));
                     }
                 });
             }

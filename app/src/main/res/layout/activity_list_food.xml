@@ -37,18 +37,18 @@
             android:textStyle="bold"
             tools:ignore="RtlCompat" />
 
-        <TextView
-            android:id="@+id/tvThem"
+        <ImageView
+            android:id="@+id/btnThemMon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="Thêm"
             android:textColor="#FF0000"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:src="@drawable/add" />
 
     </LinearLayout>
 
