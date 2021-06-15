@@ -1,5 +1,7 @@
 package com.example.managefood.Adapter;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.managefood.Model.Food;
 import com.example.managefood.R;
 import com.example.managefood.UpdateFoodActivity;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
@@ -22,6 +28,7 @@ import java.util.List;
 
 public class Food_ChuCuaHang_Adapter extends RecyclerView.Adapter<Food_ChuCuaHang_Adapter.FoodHolder> {
     List<Food> foodList;
+    Task<Void> databaseReference;
 
     public Food_ChuCuaHang_Adapter(List<Food> foodList) {
         this.foodList = foodList;
@@ -50,7 +57,25 @@ public class Food_ChuCuaHang_Adapter extends RecyclerView.Adapter<Food_ChuCuaHan
         });
         //Xóa :
         holder.btnXoa.setOnClickListener(v -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(holder.btnXoa.getContext());
+            builder.setMessage("Bạn có chắc chắn muốn xóa sản phẩm?");
+// Add the buttons
+            builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Food").child(foodList.get(position).getID()).removeValue();
+                    foodList.remove(position);
+                    notifyDataSetChanged();
+                    Toast.makeText(holder.btnXoa.getContext(), "Xóa thành công", Toast.LENGTH_SHORT).show();
+                }
+            });
+            builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    Toast.makeText(holder.btnXoa.getContext(), "", Toast.LENGTH_SHORT).show();
+                }
+            });
 
+            AlertDialog dialog = builder.create();
+            dialog.show();
         });
     }
 
