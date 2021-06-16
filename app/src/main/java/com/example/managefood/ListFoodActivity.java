@@ -72,6 +72,11 @@ public class ListFoodActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(ListFoodActivity.this,HomeActivity.class));
+    }
+
     private void initView(){
         imgBack = findViewById(R.id.img_BackListFoodHang);
         rvList = findViewById(R.id.rv_oder);

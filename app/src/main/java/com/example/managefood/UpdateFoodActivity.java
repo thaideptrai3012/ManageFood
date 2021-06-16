@@ -27,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -51,12 +52,31 @@ public class UpdateFoodActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_food);
+        initView();
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         food1 = (Food) bundle.getSerializable("FoodUpdate");
-        Log.e("Name",food1.getName());
+        edTen.setText(food1.getName());
+        edGia.setText(food1.getPrice()+"");
+        edMoTa.setText(food1.getDescription()+"");
+        if(food1.getType().equalsIgnoreCase("FastFood")){
+            spnLoai.setSelection(0);
+        }else if(food1.getType().equalsIgnoreCase("Rice")) {
+            spnLoai.setSelection(1);
+        }else if(food1.getType().equalsIgnoreCase("Healthy")) {
+            spnLoai.setSelection(2);
+        }else {
+            spnLoai.setSelection(3);
+        }
+        Picasso.with(UpdateFoodActivity.this).load(food1.getImage()).into(imgUpdateFood);
 
-        initView();
+
+        if(food1.getStatus().equalsIgnoreCase("Còn hàng")){
+            spnTrangThai.setSelection(0);
+        }else {
+            spnTrangThai.setSelection(1);
+        }
+
         storage = FirebaseStorage.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
         imgUpdateFood.setDrawingCacheEnabled(true);

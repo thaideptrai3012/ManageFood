@@ -62,9 +62,8 @@ public class Food_ChuCuaHang_Adapter extends RecyclerView.Adapter<Food_ChuCuaHan
 // Add the buttons
             builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Food").child(foodList.get(position).getID()).removeValue();
                     foodList.remove(position);
-                    notifyDataSetChanged();
+                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Food").child(foodList.get(position).getID()).removeValue();
                     Toast.makeText(holder.btnXoa.getContext(), "Xóa thành công", Toast.LENGTH_SHORT).show();
                 }
             });

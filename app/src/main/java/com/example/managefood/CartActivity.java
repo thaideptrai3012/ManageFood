@@ -77,13 +77,11 @@ public class CartActivity extends AppCompatActivity {
         btnThanhToan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 //check rỗng
                 if(HomeActivity.listFoodOrder.size() <1){
                     Toast.makeText(CartActivity.this,"Giỏ hàng rỗng",Toast.LENGTH_SHORT).show();
                     return;
                 }
-
                 //không rỗng :
                 AlertDialog.Builder builder = new AlertDialog.Builder(CartActivity.this);
 

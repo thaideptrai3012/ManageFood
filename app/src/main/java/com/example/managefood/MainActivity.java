@@ -105,8 +105,6 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onComplete(Task<AuthResult> task) {
-                    Log.e("EMail", email);
-                    Log.e("PASS", password);
                     if (task.isSuccessful()) {
                         Toast.makeText(MainActivity.this, "Đăng nhập thành công ", Toast.LENGTH_LONG).show();
                         user = email;
