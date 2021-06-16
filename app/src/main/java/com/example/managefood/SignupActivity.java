@@ -38,9 +38,8 @@ public class SignupActivity extends AppCompatActivity {
 
             String email = llemail.getText().toString();
             String password = llpassword.getText().toString();
-            String fullname = llfullname.getText().toString();
 
-            if (llemail.getText().toString().isEmpty() || llpassword.getText().toString().isEmpty() || llfullname.getText().toString().isEmpty()) {
+            if (llemail.getText().toString().isEmpty() || llpassword.getText().toString().isEmpty()) {
                 Toast.makeText(SignupActivity.this,
                         "Không được để trống!", Toast.LENGTH_LONG).show();
             } else {

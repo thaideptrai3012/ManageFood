@@ -1,9 +1,11 @@
 package com.example.managefood.Adapter;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.managefood.Model.Food;
 import com.example.managefood.R;
 import com.example.managefood.UpdateFoodActivity;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -28,7 +31,6 @@ import java.util.List;
 
 public class Food_ChuCuaHang_Adapter extends RecyclerView.Adapter<Food_ChuCuaHang_Adapter.FoodHolder> {
     List<Food> foodList;
-    Task<Void> databaseReference;
 
     public Food_ChuCuaHang_Adapter(List<Food> foodList) {
         this.foodList = foodList;
@@ -57,19 +59,26 @@ public class Food_ChuCuaHang_Adapter extends RecyclerView.Adapter<Food_ChuCuaHan
         });
         //Xóa :
         holder.btnXoa.setOnClickListener(v -> {
+            Log.e("SIZE",foodList.size()+"");
             AlertDialog.Builder builder = new AlertDialog.Builder(holder.btnXoa.getContext());
             builder.setMessage("Bạn có chắc chắn muốn xóa sản phẩm?");
 // Add the buttons
             builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    foodList.remove(position);
-                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Food").child(foodList.get(position).getID()).removeValue();
-                    Toast.makeText(holder.btnXoa.getContext(), "Xóa thành công", Toast.LENGTH_SHORT).show();
+                    FirebaseDatabase.getInstance().getReference().child("Food").child(foodList.get(position).getID()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            foodList.remove(position);
+                            Log.e("SIZE",foodList.size()+"");
+                            Toast.makeText(holder.btnXoa.getContext(), "Xóa thành công", Toast.LENGTH_SHORT).show();
+                            notifyDataSetChanged();
+                        }
+                    });
                 }
             });
             builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    Toast.makeText(holder.btnXoa.getContext(), "", Toast.LENGTH_SHORT).show();
+
                 }
             });
 
