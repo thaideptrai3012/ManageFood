@@ -115,7 +115,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         switch (id) {
             case R.id.addFood:
                 if(MainActivity.user.equalsIgnoreCase("Admin@gmail.com") ||
-                    MainActivity.user.equalsIgnoreCase(("vuhanammm@gmail.com"))) {
+                    MainActivity.user.equalsIgnoreCase("vuhanammm@gmail.com") || MainActivity.user.equalsIgnoreCase("chinhtao1908@gmail.com")) {
                     Intent x1 = new Intent(HomeActivity.this, ListFoodActivity.class);
                     startActivity(x1);
                 }else {
